@@ -49,7 +49,7 @@ app.get('/math/add', (req, res) => {
 
 //-----------MULTIPLYING
 app.get('/math/multiply/', (req, res) => {
-
+    // console.log(req.query)
     let newValues = Object.values(req.query);
     let if_NAN = newValues.every((el)=>{
         return Number(el)
@@ -87,6 +87,28 @@ app.get('/math/multiply/', (req, res) => {
 //    }
 //     }
 })
+
+
+//-----------------GIPHY  Search 
+app.get('/gif', (req, res) => {
+
+const api_key = 'uw64B4Ca6cgv1x5c5MDm8c4FvRDbMzvE';
+const url = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q='${req.query}'`
+
+console.log(req.query);
+
+const request = require('request');
+request(url, function (error, response, body) {
+    let newArray=[];
+    for (let i=0; i<JSON.parse(body).data.length; i++){
+        newArray.push(JSON.parse(body).data[i].images.original.url)
+    }
+    res.send(newArray);
+    
+    // console.log(JSON.parse(body))
+    // console.log( body.data[0].images.original.url);
+});
+});
 
 
 app.listen(port)
