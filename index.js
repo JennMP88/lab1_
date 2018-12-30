@@ -24,7 +24,7 @@ app.get('/math/add', (req, res) => {
                 sum: math.getSum(values)
             })
     }else{
-       res.send({error: 'Input is not all numbers!!!'})
+       res.send({error: 'You passed a non-number value into the parameters.'})
     }
 
 
@@ -61,7 +61,7 @@ app.get('/math/multiply/', (req, res) => {
                 product: math.getProduct(newValues)
             })
     }else{
-       res.send({error: 'Input is not all numbers!!!'})
+       res.send({error: 'You passed a non-number value into the parameters.'})
     }
 
    
